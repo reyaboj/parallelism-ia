@@ -1,5 +1,5 @@
 CXX=icpc
-CXXFLAGS=-c -qopenmp -qopt-report=5
+CXXFLAGS=-c -qopenmp -qopt-report=5 -xMIC-AVX512
 LDFLAGS=-qopenmp -lpng
 
 OBJECTS=main.o image.o stencil.o
