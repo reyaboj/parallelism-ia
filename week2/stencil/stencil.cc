@@ -10,6 +10,7 @@ void ApplyStencil(ImageClass<P> & img_in, ImageClass<P> & img_out) {
   P * out = img_out.pixel;
 
   for (int i = 1; i < height-1; i++)
+  #pragma omp simd
     for (int j = 1; j < width-1; j++) {
       P val = -in[(i-1)*width + j-1] -   in[(i-1)*width + j] - in[(i-1)*width + j+1] 
 	-in[(i  )*width + j-1] + 8*in[(i  )*width + j] - in[(i  )*width + j+1] 
