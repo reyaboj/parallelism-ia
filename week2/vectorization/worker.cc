@@ -3,7 +3,7 @@ double MyFunction(int n) {
     A[0:n] = B[0:n] = 1.0;
 
     for (int i = 0; i < n/2; i++) {
-        A[i] += B[i*2];
+        if (i%3 == 0) A[i] += B[i];
     }
 
     return A[2];
