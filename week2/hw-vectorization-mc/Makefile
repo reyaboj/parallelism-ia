@@ -17,4 +17,4 @@ queue : app
 	echo "cd $PBS_O_WORKDIR ; ./app" | qsub -N simdiff
 
 clean :
-	rm app diffusion.o distribution.o *.optrpt simdiff.e* simdiff.o*
+	rm -f app diffusion.o distribution.o *.optrpt simdiff.e* simdiff.o*
