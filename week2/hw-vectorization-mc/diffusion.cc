@@ -14,7 +14,7 @@ int diffusion(const int n_particles,
 
   for (int j = 0; j < n_steps; j++) {
     //Intel MKL function to generate random numbers
-    vsRngUniform(VSL_RNG_METHOD_UNIFORM_STD, rnStream, n_particles, &rn, -1.0, 1.0);
+    vsRngUniform(VSL_RNG_METHOD_UNIFORM_STD, rnStream, n_particles, rn, -1.0, 1.0);
 
     for (int i = 0; i < n_particles; i++) {
       particle_pos[i] += dist_func(alpha, rn[i]);
