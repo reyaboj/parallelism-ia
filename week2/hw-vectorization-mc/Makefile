@@ -13,5 +13,8 @@ diffusion.o : diffusion.cc distribution.o
 app : main.cc diffusion.o distribution.o
 	icpc ${OPTRPT} ${CXXFLAGS} -o "$@" "$<" diffusion.o distribution.o
 
+queue : app
+	echo ./app | qsub -N simdiff
+
 clean :
 	rm app diffusion.o distribution.o *.optrpt
