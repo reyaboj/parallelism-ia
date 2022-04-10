@@ -1,7 +1,7 @@
 CXX=icpc
 CXXFLAGS=-xMIC-AVX512 -qopenmp-simd -mkl
 OPTRPT=-qopt-report=5
-PBS_WALLTIME="00:05:00"
+PBS_WALLTIME="00:10:00"
 
 default : app
 
