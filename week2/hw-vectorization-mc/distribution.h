@@ -4,6 +4,6 @@
 #include <omp.h>
 const float delta_max = 1.0f;
 
-#pragma omp declare simd
+#pragma omp declare simd simdlen(16)
 float dist_func(const float alpha, const float rn);
 #endif
