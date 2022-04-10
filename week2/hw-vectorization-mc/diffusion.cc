@@ -9,12 +9,12 @@ int diffusion(const int n_particles,
               const float alpha, 
               VSLStreamStatePtr rnStream) {
   int n_escaped=0;
-  float particle_pos[n_particles];
+  float x[n_particles];
   float rn[n_particles];
 
   // initialize positions and random displacements
   for (int i = 0; i < n_particles; i++) {
-    particle_pos[i] = 0.0f;
+    x[i] = 0.0f;
     rn[i] = 0.0f;
   }
 
@@ -24,12 +24,12 @@ int diffusion(const int n_particles,
     
     #pragma omp simd
     for (int i = 0; i < n_particles; i++) {
-      particle_pos[i] += dist_func(alpha, rn[i]);
+      x[i] += dist_func(alpha, rn[i]);
     }
   }
   
   for (int i = 0; i < n_particles; i++) {
-    if (particle_pos[i] > x_threshold) n_escaped++;
+    if (x[i] > x_threshold) n_escaped++;
   }
 
   return n_escaped;
