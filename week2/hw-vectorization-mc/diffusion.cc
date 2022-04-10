@@ -13,10 +13,8 @@ int diffusion(const int n_particles,
   float rn[n_particles];
 
   // initialize positions and random displacements
-  for (int i = 0; i < n_particles; i++) {
-    x[i] = 0.0f;
-    rn[i] = 0.0f;
-  }
+  x[0:n_particles] = 0.0f;
+  rn[0:n_particles] = 0.0f;
 
   for (int j = 0; j < n_steps; j++) {
     //Intel MKL function to generate random numbers
