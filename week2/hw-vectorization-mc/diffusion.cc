@@ -9,17 +9,21 @@ int diffusion(const int n_particles,
               const float alpha, 
               VSLStreamStatePtr rnStream) {
   int n_escaped=0;
-  for (int i = 0; i < n_particles; i++) {
-    float x = 0.0f;
-    for (int j = 0; j < n_steps; j++) {
-      float rn;
-      
-      //Intel MKL function to generate random numbers
-      vsRngUniform(VSL_RNG_METHOD_UNIFORM_STD, rnStream, 1, &rn, -1.0, 1.0);
-      
-      x += dist_func(alpha, rn); 
+  float particle_pos[n_particles] = {0};
+  float rn[n_particles] = {0};
+
+  for (int j = 0; j < n_steps; j++) {
+    //Intel MKL function to generate random numbers
+    vsRngUniform(VSL_RNG_METHOD_UNIFORM_STD, rnStream, n_particles, &rn, -1.0, 1.0);
+
+    for (int i = 0; i < n_particles; i++) {
+      particle_pos[i] += dist_func(alpha, rn[i]);
     }
-    if (x > x_threshold) n_escaped++;
   }
+  
+  for (int i = 0; i < n_particles; i++) {
+    if (particle_pos[i] > x_threshold) n_escaped++;
+  }
+
   return n_escaped;
 }
